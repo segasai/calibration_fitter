@@ -1,3 +1,6 @@
+
+
+
 The code in the repo deals with the problem of modeling the discrepancies
 between two sets of observations.
 
@@ -15,7 +18,13 @@ the distribution outside that interval.
 
 The model for outliers is
 
-$ dv|outl \sim N(0,sig_outl) $
+$dv|outl \sim N(0,\sigma_outl) $
+
+The model for good data is:
 
 $dv|good \sim N(off,\sqrt{(e_1^2 + e_2^2)*mult^2 + floor^2} )$
 
+* Citation information:
+
+If you use the code, please cite this repository and also cite the use of the
+dynesty nested sampler (Speagle 2020, Koposov+2023)
