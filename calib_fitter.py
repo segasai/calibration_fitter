@@ -1,3 +1,8 @@
+"""
+Author: Sergey E. Koposov
+Email: skoposov __AT__ ed __DOT__ ac __DOT__ uk
+
+"""
 import numpy as np
 import scipy.stats
 import dynesty
