@@ -25,14 +25,17 @@ where sigma_x = np.sqrt((mult*e1)**2 + (mult*e2)**2 + floor**2)
 
 
 def gau_cdf(x, cen, sig):
+    """ Fast N(x|cen,sig) gaussian cdf """
     return scipy.special.ndtr((x - cen) / sig)
 
 
 def gau_lpdf(x, cen, sig):
+    """ Log PDF of N(x|cen,sig) """
     return np.log(1 / np.sqrt(2 * np.pi) / sig) - 0.5 * ((x - cen) / sig)**2
 
 
 def trunc_gau_lpdf(x, cen, sig, left, right):
+    """ Log PDF of N(x|cen,sig) truncated at left, right """
     # N = scipy.stats.norm(cen, sig)
     norm = gau_cdf(right, cen, sig) - gau_cdf(left, cen, sig)
     eps = 1e-30
@@ -52,6 +55,9 @@ def like(p, data):
         np.log(outl_frac) + logl_outl,
         np.log1p(-outl_frac) + logl_good)
     ret = np.sum(ret)
+    if not np.isfinite(ret):
+        print('Warning, not finite likelihood value!')
+        ret = -1e100
     # print(ret, p)
     return ret
 
