@@ -182,7 +182,7 @@ def fit(v1,
 
     DataCache.data = data
     rstate = np.random.default_rng(24573343)
-    with (mp.Pool(nthreads, initializer=cache_init, initargs=data)
+    with (mp.Pool(nthreads, initializer=cache_init, initargs=(data, ))
           if nthreads > 1 else nullcontext()) as poo:
         dns = dynesty.DynamicNestedSampler(
             cache_wrapper,
